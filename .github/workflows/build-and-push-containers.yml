@@ -34,6 +34,5 @@ jobs:
           push: true
           tags: |
             dan-mm/test-puppeteer:latest # Replace with your Docker Hub username and repository name
-          load: true
           platforms: linux/amd64,linux/arm64, darwin/amd64 # Add any other platforms you want to support
           builder: ${{ env.BUILDx_BUILDER }} # Optional, can speed up builds with a pre-built builder cache
