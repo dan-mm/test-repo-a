@@ -32,7 +32,6 @@ jobs:
         with:
           context: ./docker/auxiliary-containers/puppeteer # Change this to the path of your Dockerfiles directory
           push: true
-          tags: |
-            dan-mm/test-puppeteer:latest # Replace with your Docker Hub username and repository name
+          tags: ghcr.io/${{ github.repository }}/dan-mm/test-puppeteer:latest
           platforms: linux/amd64,linux/arm64, darwin/amd64 # Add any other platforms you want to support
           builder: ${{ env.BUILDx_BUILDER }} # Optional, can speed up builds with a pre-built builder cache
