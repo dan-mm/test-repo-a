@@ -7,10 +7,10 @@ subdirs=($(find ./docker/auxiliary-containers -type f -name 'Dockerfile' -exec d
 
 # Loop through each subdirectory, build and push the Docker image
 for subdir in "${subdirs[@]}"; do
-  subdir=$(basename "${subdir}")
+  folder=$(basename "${subdir}")
   docker buildx build \
     --push \
-    --tag "ghcr.io/${GITHUB_REPOSITORY}/${subdir}:latest" \
+    --tag "ghcr.io/${GITHUB_REPOSITORY}/${folder}:latest" \
     --platform linux/amd64,linux/arm64 \
     "${subdir}"
 done
