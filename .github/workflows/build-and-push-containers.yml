@@ -28,13 +28,5 @@ jobs:
           # username: ${{ secrets.DOCKERHUB_USERNAME }}
           # password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
       - name: Build and Push Containers
-        id: buildx
-        uses: docker/build-push-action@v4
-        with:
-          context: ./docker/auxiliary-containers/puppeteer # Change this to the path of your Dockerfiles directory
-          push: true
-          tags: ghcr.io/${{ github.repository }}/dan-mm/test-puppeteer:latest
-          platforms: linux/amd64,linux/arm64 #, darwin/amd64 # Add any other platforms you want to support
-          builder: ${{ env.BUILDx_BUILDER }} # Optional, can speed up builds with a pre-built builder cache
+        run: bash ./docker/auxiliary-containers/build-containers.sh
