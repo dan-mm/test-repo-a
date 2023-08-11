@@ -1,0 +1,40 @@
+name: Test Eco-CI Workflow
+
+on:
+  workflow_dispatch:
+  push:
+
+# test 1
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    steps:      
+      - name: Initialize energy estimation
+        uses: green-coding-berlin/eco-ci-energy-estimation@send-cpu-avg
+        with:
+          task: start-measurement
+
+      - name: Test measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@send-cpu-avg
+        with:
+          task: get-measurementTest
+          label: "Label"
+
+      - name: Sleep
+        run: sleep 4s
+        shell: bash
+
+      - name: Test measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@send-cpu-avg
+        with:
+          task: get-measurement
+          label: "Label 2"
+
+      - name: Show Energy Results
+        uses: green-coding-berlin/eco-ci-energy-estimation@send-cpu-avg
+        with:
+          task: display-results
+          display-graph: true
