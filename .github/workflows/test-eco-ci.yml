@@ -20,7 +20,7 @@ jobs:
       - name: Test measurement
         uses: green-coding-berlin/eco-ci-energy-estimation@send-cpu-avg
         with:
-          task: get-measurementTest
+          task: get-measurement
           label: "Label"
 
       - name: Sleep
