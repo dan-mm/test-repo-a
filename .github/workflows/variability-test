@@ -1,0 +1,51 @@
+
+name: Time test
+
+on:
+  schedule:
+    - cron: '1,30 * * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Initialize Energy Estimation
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: start-measurement
+
+      # Runs a single command using the runners shell
+      - name: Install sysbench
+        run: |
+          sudo time apt install sysbench -y
+
+      - name: Sysbench install measuremnet
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'Install sysbench'
+
+      # Runs a single command using the runners shell
+      - name: Running sysbench
+        run: |
+          time sysbench --cpu-max-prime=25000 --threads=1 --time=0 --test=cpu run --events=20000 --rate=0
+
+      - name: Sysbench measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'Run sysbench'
+
+      - name: Display results
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: display-results
