@@ -12,12 +12,12 @@ jobs:
       actions: read
     steps:      
       - name: Initialize energy estimation
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@701b5f2f4ba601be587823cd0786f07cb6ae2ee6
         with:
           task: start-measurement
 
       - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@701b5f2f4ba601be587823cd0786f07cb6ae2ee6
         with:
           task: get-measurement
           label: "Label"
@@ -27,13 +27,13 @@ jobs:
         shell: bash
 
       - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@701b5f2f4ba601be587823cd0786f07cb6ae2ee6
         with:
           task: get-measurement
           label: "Label 2"
 
       - name: Show Energy Results
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@701b5f2f4ba601be587823cd0786f07cb6ae2ee6
         with:
           task: display-results
           display-graph: true
