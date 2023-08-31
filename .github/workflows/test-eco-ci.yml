@@ -12,7 +12,7 @@ jobs:
       actions: read
     steps:      
       - name: Initialize energy estimation
-        uses: green-coding-berlin/eco-ci-energy-estimation@v1
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
         with:
           task: start-measurement
 
@@ -27,7 +27,7 @@ jobs:
         shell: bash
 
       - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@57e0434a6cfafa786862c7249640a13789922577
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
         with:
           task: get-measurement
           label: "Label 2"
