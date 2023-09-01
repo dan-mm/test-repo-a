@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Initialize Energy Estimation
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@06837b0b3b393a04d055979e1305852bda82f044
         with:
           task: start-measurement
 
@@ -27,7 +27,7 @@ jobs:
           sudo time apt install sysbench -y
 
       - name: Sysbench install measuremnet
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@06837b0b3b393a04d055979e1305852bda82f044
         with:
           task: get-measurement
           label: 'Install sysbench'
@@ -38,12 +38,12 @@ jobs:
           time sysbench --cpu-max-prime=25000 --threads=1 --time=0 --test=cpu run --events=20000 --rate=0
 
       - name: Sysbench measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@06837b0b3b393a04d055979e1305852bda82f044
         with:
           task: get-measurement
           label: 'Run sysbench'
 
       - name: Display results
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        uses: green-coding-berlin/eco-ci-energy-estimation@06837b0b3b393a04d055979e1305852bda82f044
         with:
           task: display-results
