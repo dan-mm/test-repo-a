@@ -10,7 +10,7 @@ for subdir in "${subdirs[@]}"; do
   folder=$(basename "${subdir}")
   docker buildx build \
     --push \
-    --tag "greencoding/gcb_playwright:latest" \ # change back to {folder}, testing now
+    --tag "greencoding/${folder}:latest" \
     --platform linux/amd64,linux/arm64 \
     "${subdir}"
 done
