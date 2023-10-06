@@ -16,25 +16,11 @@ jobs:
         with:
           task: start-measurement
 
-      - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
-        with:
-          task: get-measurement
-          label: "Label"
-
       - name: Sleep
         run: sleep 4s
         shell: bash
-
-      - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@v2
-        with:
-          task: get-measurement
-          label: "Label 2"
 
       - name: Show Energy Results
         uses: green-coding-berlin/eco-ci-energy-estimation@v2
         with:
           task: display-results
-          display-graph: false
-          display-table: false
