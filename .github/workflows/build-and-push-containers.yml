@@ -17,7 +17,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
         ## This is needed for multi-architecture builds
       - name: Set up QEMU
@@ -35,4 +35,12 @@ jobs:
         # ${{ github.run_number }} increments with each urn (stays the same if you re-run a failed/stalled job)
         # build-containers script takes the first arguement as the tag in the format: v1.x , where x is run_number
       - name: Build and Push Containers
-        run: bash ./docker/auxiliary-containers/build-containers.sh ${{ github.run_number }}
+        shell: bash
+        run: |
+          # Get a list of all Dockerfiles that were modified in the PR
+          CHANGED_DOCKERFILES=$(git diff --name-only ${{ github.base_ref }}...${{ github.head_ref }} | grep 'docker/auxiliary-containers/.*Dockerfile$')
+
+          # Extract the unique subfolders from the modified Dockerfile paths
+          CHANGED_SUBFOLDERS=$(echo "$CHANGED_DOCKERFILES" | sed -n 's|^docker/auxiliary-containers/\(.*\)/[^/]*$|\1|p' | sort -u)
+
+          echo "$CHANGED_SUBFOLDERS
