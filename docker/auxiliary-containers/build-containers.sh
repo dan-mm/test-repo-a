@@ -26,10 +26,10 @@ for folder in "${changed_folders[@]}"; do
 
 
     echo "Building new version: greencoding/${folder}:v${new_version}"
-    docker buildx build \
-        --push \
-        --tag "greencoding/${folder}:${new_version}" \
-        --platform linux/amd64,linux/arm64 \
-        ./docker/auxiliary-containers/"${folder}"
-    echo "Image pushed"
+    # docker buildx build \
+    #     --push \
+    #     --tag "greencoding/${folder}:${new_version}" \
+    #     --platform linux/amd64,linux/arm64 \
+    #     ./docker/auxiliary-containers/"${folder}"
+    # echo "Image pushed"
 done

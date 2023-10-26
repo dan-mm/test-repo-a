@@ -1,8 +1,8 @@
 name: Build and Push Containers
 on:
   pull_request:
-    types:
-      - closed
+    # types:
+    #   - closed
     paths:
       - 'docker/auxiliary-containers/**/Dockerfile'
 
