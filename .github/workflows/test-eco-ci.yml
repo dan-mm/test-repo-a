@@ -26,5 +26,4 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@minimize-old-comments
         with:
           task: display-results
-          with:
-            pr-comment: true
+          pr-comment: true
