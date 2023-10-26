@@ -1,10 +1,10 @@
 name: Build and Push Containers
 on:
   pull_request:
-    # types:
-    #   - closed
-    # paths:
-    #   - 'docker/auxiliary-containers/**/Dockerfile'
+    types:
+      - closed
+    paths:
+      - 'docker/auxiliary-containers/**/Dockerfile'
 
   workflow_dispatch:
 
@@ -35,8 +35,8 @@ jobs:
       - name: Build and Push auxiliary-containers
         shell: bash
         run: |
-          # PR_FILES=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" | jq -r '.[] | .filename')
-          # CHANGED_SUBFOLDERS=$(echo "$PR_FILES" | grep -E '^docker/auxiliary-containers/[^/]+/' | sed -r 's|^docker/auxiliary-containers/([^/]+)/.*|\1|' | sort -u)
+          PR_FILES=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" | jq -r '.[] | .filename')
+          CHANGED_SUBFOLDERS=$(echo "$PR_FILES" | grep -E '^docker/auxiliary-containers/[^/]+/' | sed -r 's|^docker/auxiliary-containers/([^/]+)/.*|\1|' | sort -u)
 
-          # echo $CHANGED_SUBFOLDERS
-          ./docker/auxiliary-containers/build-containers.sh gcb_playwright
+          echo $CHANGED_SUBFOLDERS
+          # ./docker/auxiliary-containers/build-containers.sh $CHANGED_SUBFOLDERS
