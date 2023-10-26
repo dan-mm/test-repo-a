@@ -9,6 +9,6 @@ RUN pip install playwright==1.35.0
 # Set up Playwright dependencies for Chromium, Firefox and Webkit
 RUN playwright install
 RUN playwright install-deps
-RUN echo "hello world"
+RUN echo "hello world!"
 
 CMD ["/bin/bash"]
