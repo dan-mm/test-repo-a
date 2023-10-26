@@ -39,7 +39,7 @@ jobs:
           CHANGED_SUBFOLDERS=$(echo "$PR_FILES" | grep -E '^docker/auxiliary-containers/[^/]+/' | sed -r 's|^docker/auxiliary-containers/([^/]+)/.*|\1|' | sort -u)
 
           echo $CHANGED_SUBFOLDERS
-          ./docker/build-containers.sh $CHANGED_SUBFOLDERS
+          ./docker/auxiliary-containers/build-containers.sh $CHANGED_SUBFOLDERS
 
 
         # ${{ github.run_number }} increments with each urn (stays the same if you re-run a failed/stalled job)
