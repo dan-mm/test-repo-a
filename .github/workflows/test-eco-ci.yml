@@ -1,6 +1,7 @@
 name: Test Eco-CI Workflow
 
 on:
+  pull_request:
   workflow_dispatch:
 
 # testing dependabot commit
@@ -24,3 +25,5 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@v2
         with:
           task: display-results
+          with:
+            pr-comment: true
