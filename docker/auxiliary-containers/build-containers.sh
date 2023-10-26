@@ -1,27 +1,32 @@
 #!/bin/bash
 set -euo pipefail
 
-# the first arguement should be the version number
-version=$1
+# loop through the passed arguements and put them in an array called "changed_folders"
+changed_folders=()
+for arg in "$@"; do
+  changed_folders+=("$arg")
+done
 
-# check that version is a non-empty string representing a number
-if ! [[ ${version} =~ ^[0-9]+$ ]]; then
-  echo "Usage: $0 <version-number>"
-  echo "Example: $0 1"
-  exit 1
-fi
+echo "Changed folders: ${changed_folders[@]}"
 
-# The names of the folders within "auxiliary-containers" must match the repository name in dockerhub!
-
-# Get the list of subdirectories within "auxiliary-containers" directory containing a Dockerfile
-subdirs=($(find ./docker/auxiliary-containers -type f -name 'Dockerfile' -exec dirname {} \;))
-
-# Loop through each subdirectory, build and push the Docker image
-for subdir in "${subdirs[@]}"; do
-  folder=$(basename "${subdir}")
-  docker buildx build \
-    --push \
-    --tag "greencoding/${folder}:v1.${version}" \
-    --platform linux/amd64,linux/arm64 \
-    "${subdir}"
+## loop through all the changed folders
+for folder in "${changed_folders[@]}"; do
+    # get latest tag version from dockerhub for "greencoding/${folder}"
+    response=$(curl -s "https://hub.docker.com/v2/repositories/greencoding/${folder}/tags/?page_size=1")
+    latest_version=$(echo "${response}" | jq -r '.results[0].name')
+    #latest_version=$(curl -s "https://hub.docker.com/v2/repositories/greencoding/${folder}/tags/?page_size=1" | jq -r '.results[0].name')
+    # if latest_version is null, set it to 1
+    if [ "${latest_version}" == "null" ]; then
+        latest_version=1
+    else
+        # increment latest_version
+        latest_version=$((latest_version+1))
+    fi
+    echo "Latest version for ${folder} is ${latest_version}"
+    echo "Building ${folder}..."
+    # docker buildx build \
+    #     --push \
+    #     --tag "greencoding/${folder}:v1.${version}" \
+    #     --platform linux/amd64,linux/arm64 \
+    #     ./docker/auxiliary-containers/"${folder}"
 done
