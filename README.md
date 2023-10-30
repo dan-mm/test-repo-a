@@ -1,2 +1,2 @@
 # test-repo-a
-It was
+It was a
