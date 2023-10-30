@@ -1,2 +1,2 @@
 # test-repo-a
-poke poke poke
+poke poke pokey
