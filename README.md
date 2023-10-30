@@ -1,2 +1,2 @@
 # test-repo-a
-It was a dark and stormy
+It was a dark and stormy night.
