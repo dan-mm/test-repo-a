@@ -25,5 +25,5 @@ jobs:
       - name: Show Energy Results
         uses: green-coding-berlin/eco-ci-energy-estimation@minimize-old-comments
         with:
-          task: display-results
+          task: test
           pr-comment: true
