@@ -13,8 +13,17 @@ jobs:
       actions: read
       pull-requests: write
     steps:      
-      - name: Minimize Comment
+      - name: Initialize energy estimation
         uses: green-coding-berlin/eco-ci-energy-estimation@minimize-old-comments
         with:
-          task: test
+          task: start-measurement
+
+      - name: Sleep
+        run: sleep 4s
+        shell: bash
+
+      - name: Show Energy Results
+        uses: green-coding-berlin/eco-ci-energy-estimation@minimize-old-comments
+        with:
+          task: display-results
           pr-comment: true
