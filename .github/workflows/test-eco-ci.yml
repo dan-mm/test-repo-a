@@ -1,6 +1,7 @@
 name: Test Eco-CI Workflow
 
 on:
+  pull_request:
   workflow_dispatch:
 
 # testing dependabot commit
@@ -10,31 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: read
+      pull-requests: write
     steps:      
       - name: Initialize energy estimation
         uses: green-coding-berlin/eco-ci-energy-estimation@minimize-tweaks
         with:
           task: start-measurement
 
-      - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@minimize-tweaks
-        with:
-          task: get-measurement
-          label: "Label"
-
       - name: Sleep
         run: sleep 4s
         shell: bash
-
-      - name: Test measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@minimize-tweaks
-        with:
-          task: get-measurement
-          label: "Label 2"
 
       - name: Show Energy Results
         uses: green-coding-berlin/eco-ci-energy-estimation@minimize-tweaks
         with:
           task: display-results
-          pr-comment: true
-          display-graph: true
+          with:
+            pr-comment: true
