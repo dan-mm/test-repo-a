@@ -4,7 +4,7 @@ on:
   pull_request:
   workflow_dispatch:
 
-# testing dependabot commit
+# testing dependabot commit 
 
 jobs:
   main:
@@ -26,5 +26,4 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@minimize-tweaks
         with:
           task: display-results
-          with:
-            pr-comment: true
+          pr-comment: true
