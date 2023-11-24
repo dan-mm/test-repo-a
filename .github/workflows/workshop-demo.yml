@@ -1,6 +1,5 @@
 
-name: Test Eco-CI Workflow
-
+name: Workshop demo
 on:
   workflow_dispatch:
 
