@@ -27,3 +27,4 @@ jobs:
         with:
           task: display-results
           pr-comment: true
+          api-base: 'api.github.com'
