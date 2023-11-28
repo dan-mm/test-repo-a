@@ -14,7 +14,7 @@ jobs:
       pull-requests: write
     steps:      
       - name: Initialize energy estimation
-        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        uses: green-coding-berlin/eco-ci-energy-estimation@pr-api-url
         with:
           task: start-measurement
 
@@ -23,8 +23,7 @@ jobs:
         shell: bash
 
       - name: Show Energy Results
-        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        uses: green-coding-berlin/eco-ci-energy-estimation@pr-api-url
         with:
           task: display-results
           pr-comment: true
-          api-base: 'api.github.com'
