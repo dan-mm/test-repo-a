@@ -1,4 +1,4 @@
 # test-repo-a
 
 
-do re mi
+do re mi fa
